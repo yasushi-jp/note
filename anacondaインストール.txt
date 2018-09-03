@@ -1,0 +1,103 @@
+su -
+yum install bzip2 -y
+useradd -p anaconda anaconda
+su - anaconda
+cd 
+curl -OL https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh
+chmod +x Anaconda3-5.2.0-Linux-x86_64.sh
+Anaconda3-5.2.0-Linux-x86_64.sh
+
+Do you accept the license terms? [yes|no]
+>>> yes
+
+Anaconda3 will now be installed into this location:
+/home/anaconda/anaconda3
+
+  - Press ENTER to confirm the location
+  - Press CTRL-C to abort the installation
+  - Or specify a different location below
+
+>>> Enter
+
+Do you wish the installer to prepend the Anaconda3 install location
+to PATH in your /home/anaconda/.bashrc ? [yes|no]
+
+>>> no
+
+Do you wish to proceed with the installation of Microsoft VSCode? [yes|no]
+
+>>> yes
+
+
+.anaconda.env
+----------------------------------
+export PATH=/home/anaconda/anaconda3/bin:$PATH
+----------------------------------
+
+source ./.anaconda.env
+
+anaconda -V
+「anaconda Command line client (version 1.6.14)」
+
+python --version
+「Python 3.6.5 :: Anaconda, Inc.」
+
+conda create -n tf_env anaconda python=3.6
+source activate tf_env
+
+python --version
+「Python 3.6.5 :: Anaconda, Inc.」
+
+jupyter notebook --generate-config
+c.NotebookApp.notebook_dir = 'デフォルトに設定したいディレクトリのパス'
+c = get_config()
+
+c.NotebookApp.ip = '*'
+c.NotebookApp.open_browser = False
+c.NotebookApp.port = 8888
+
+sudo firewall-cmd --add-port=8888/tcp --permanent
+sudo firewall-cmd --reload
+
+$ ipython
+# 暗号化された文字列を生成するためにライブラリ読み込み
+In [1]: from notebook.auth import passwd
+
+# パスワードを入力して暗号化された文字列を生成
+In [2]: passwd()
+Enter password: 
+Verify password: 
+Out[2]: 'sha1:(暗号化された文字列)'
+Out[2]: 'sha1:c4149164377d:4f4d1e69d067d87a0cdaa4f9f3a5355125a3b2cd'
+
+u'sha1:c4149164377d:4f4d1e69d067d87a0cdaa4f9f3a5355125a3b2cd'
+# iPythonから抜ける
+In [3]:
+Do you really want to exit ([y]/n)? y
+
+conda install -c conda-forge jupyter_contrib_nbextensions
+conda install python-msgpack
+pip install tensorflow==1.8.0
+
+・・・・・
+anaconda    ALL=(ALL)       ALL
+
+
+
+conda update -n base conda
+
+
+
+python --version
+conda install -c anaconda jupyter
+conda install -c anaconda numpy
+conda install -c anaconda scipy
+conda install -c anaconda matplotlib
+conda install -c anaconda scikit-learn
+conda install -c anaconda pandas
+conda install -c anaconda pillow
+conda install -c anaconda opencv
+conda install -c anaconda keras==2.1.6
+
+
+
