@@ -56,6 +56,9 @@ c.NotebookApp.ip = '*'
 c.NotebookApp.open_browser = False
 c.NotebookApp.port = 8888
 
+visudo
+anaconda    ALL=(ALL)       ALL
+
 sudo firewall-cmd --add-port=8888/tcp --permanent
 sudo firewall-cmd --reload
 
@@ -76,15 +79,22 @@ In [3]:
 Do you really want to exit ([y]/n)? y
 
 conda install -c conda-forge jupyter_contrib_nbextensions
-conda install python-msgpack
-pip install tensorflow==1.8.0
-
-・・・・・
-anaconda    ALL=(ALL)       ALL
-
-
+conda install -c anaconda keras==2.1.6
+conda install -c anaconda tensorflow==1.8.0
 
 conda update -n base conda
+
+
+・・・・・
+
+source ./.anaconda.env
+source activate tf_env
+jupyter notebook
+
+source deactivate
+
+%matplotlib notebook
+%matplotlib inline
 
 
 
@@ -97,7 +107,12 @@ conda install -c anaconda scikit-learn
 conda install -c anaconda pandas
 conda install -c anaconda pillow
 conda install -c anaconda opencv
-conda install -c anaconda keras==2.1.6
+conda install python-msgpack
+conda install -c anaconda msgpack-python
 
 
 
+
+
+
+conda remove -n tf_env --all
