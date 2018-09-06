@@ -105,8 +105,10 @@ yum install graphviz
 conda install -c anaconda graphviz
 conda install -c anaconda pydot
 conda install -c anaconda pydotplus
+conda install -c anaconda opencv
 
 
+---------------------------------
 python --version
 conda install -c anaconda jupyter
 conda install -c anaconda numpy
@@ -115,13 +117,8 @@ conda install -c anaconda matplotlib
 conda install -c anaconda scikit-learn
 conda install -c anaconda pandas
 conda install -c anaconda pillow
-conda install -c anaconda opencv
 conda install python-msgpack
 conda install -c anaconda msgpack-python
 
-
-
-
-
-
 conda remove -n tf_env --all
+---------------------------------
