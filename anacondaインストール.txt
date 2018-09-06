@@ -96,6 +96,15 @@ source deactivate
 %matplotlib notebook
 %matplotlib inline
 
+yum check-update
+yum update
+yum search graphviz
+yum info graphviz
+yum install graphviz
+
+conda install -c anaconda graphviz
+conda install -c anaconda pydot
+conda install -c anaconda pydotplus
 
 
 python --version
