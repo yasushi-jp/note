@@ -107,6 +107,8 @@ conda install -c anaconda pydot
 conda install -c anaconda pydotplus
 conda install -c anaconda opencv
 
+pip install mglearn
+
 
 ---------------------------------
 python --version
