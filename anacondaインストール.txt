@@ -49,12 +49,15 @@ python --version
 「Python 3.6.5 :: Anaconda, Inc.」
 
 jupyter notebook --generate-config
+[~/.jupyter/jupyter_notebook_config.py]
+---------------------------------------------
 c.NotebookApp.notebook_dir = 'デフォルトに設定したいディレクトリのパス'
 c = get_config()
 
 c.NotebookApp.ip = '*'
 c.NotebookApp.open_browser = False
 c.NotebookApp.port = 8888
+---------------------------------------------
 
 visudo
 anaconda    ALL=(ALL)       ALL
@@ -73,7 +76,10 @@ Verify password:
 Out[2]: 'sha1:(暗号化された文字列)'
 Out[2]: 'sha1:c4149164377d:4f4d1e69d067d87a0cdaa4f9f3a5355125a3b2cd'
 
+[~/.jupyter/jupyter_notebook_config.py]
+-----------------------------------------------------
 u'sha1:c4149164377d:4f4d1e69d067d87a0cdaa4f9f3a5355125a3b2cd'
+-----------------------------------------------------
 # iPythonから抜ける
 In [3]:
 Do you really want to exit ([y]/n)? y
