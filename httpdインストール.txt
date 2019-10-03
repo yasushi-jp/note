@@ -1,0 +1,70 @@
+mount -t vboxsf AppStream /media
+mount -t vboxsf AppStream /media
+
+mount -t vboxsf AppStream /vbox_share
+
+$ su -
+
+# yum install -y createrepo yum-utils
+
+# cd
+# mkdir -p yum
+# cd yum
+# mkdir -p httpd_repo
+# cd httpd_repo
+# mkdir Packages
+# cd Packages
+# yumdownloader --resolve httpd
+# cd ../..
+# createrepo httpd_repo
+# cd /etc/yum.repos.d
+# vi httpd_repo.repo
+[httpd_repo]
+name=httpd_repo
+baseurl=file:///root/yum/httpd_repo
+enabled=1
+gpgcheck=0
+
+# yum clean all
+# yum search httpd
+# yum --enablerepo=httpd_repo install httpd
+
+
+
+# DVDドライブをマウントするディレクトリを作成する
+$ mkdir /media/CentOS
+
+# DVDドライブをマウントする
+$ mount /dev/dvd /media/CentOS
+# or デバイスがcdromと見えている場合があります。
+# その場合は、以下のようにドライブをマウントする
+$ mount /dev/cdrom /media/CentOS
+...
+
+# 正しくマウントできたかlsコマンドで確認する
+$ ls /media/CentOS/
+CentOS_BuildTag  GPL       RPM-GPG-KEY-CentOS-7          images
+EFI              LiveOS    RPM-GPG-KEY-CentOS-Testing-7  isolinux
+EULA             Packages  TRANS.TBL                     repodata
+
+
+# DVD用のリポジトリ設定ファイルを作成する
+$ vi /etc/yum.repos.d/CentOS-Media.repo
+...
+
+[dvd]
+name=dvd
+baseurl=file:///media/CentOS/
+gpgcheck=1
+enabled=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+
+# まずは、リポジトリのアップデートを行う
+$ yum update
+...
+
+# 適当なパッケージを、DVDからインストールする
+$ yum --disablerepo=* --enablerepo=dvd install vim
+...
+
+$ umount /media/CentOS
