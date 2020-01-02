@@ -4,6 +4,8 @@ useradd -p anaconda anaconda
 su - anaconda
 cd 
 curl -OL https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh
+curl -OL https://repo.anaconda.com/archive/Anaconda3-2019.07-Linux-x86_64.sh
+
 chmod +x Anaconda3-5.2.0-Linux-x86_64.sh
 Anaconda3-5.2.0-Linux-x86_64.sh
 
@@ -66,7 +68,7 @@ sudo firewall-cmd --add-port=8888/tcp --permanent
 sudo firewall-cmd --reload
 
 $ ipython
-# 暗号化された文字列を生成するためにライブラリ読み込み
+# 暗号化された文字列を生成するためにパッケージ読み込み
 In [1]: from notebook.auth import passwd
 
 # パスワードを入力して暗号化された文字列を生成
@@ -98,6 +100,7 @@ source activate tf_env
 jupyter notebook
 
 source deactivate
+conda deactivate
 
 %matplotlib notebook
 %matplotlib inline
@@ -112,6 +115,8 @@ conda install -c anaconda graphviz
 conda install -c anaconda pydot
 conda install -c anaconda pydotplus
 conda install -c anaconda opencv
+
+conda install -c conda-forge mglearn
 
 pip install mglearn
 
@@ -130,3 +135,75 @@ conda install -c anaconda msgpack-python
 
 conda remove -n tf_env --all
 ---------------------------------
+conda remove -n ml_env --all
+
+conda activate ml_env
+conda deactivate
+
+
+
+-------------------
+conda コマンドの使い方メモ
+
+仮想環境を作成
+conda create -n <仮想環境名> python=x.x.x <パッケージ名>
+
+仮想環境をコピーする。
+conda create -n <コピー先仮想環境名> --clone <コピー元仮想環境名>
+
+パッケージをインストールする
+conda install <パッケージ名>
+
+仮想環境を指定してパッケージをインストールする
+conda install -n <仮想環境名> <パッケージ名>
+
+バージョンを指定してパッケージをインストールする
+conda install <パッケージ名>==x.x.x
+
+チャンネルを指定してパッケージをインストールする
+conda install -c <チャンネル> <パッケージ名>
+
+パッケージを最新のバージョンにアップデートする
+conda update <パッケージ名>
+conda update -n <仮想環境名> <パッケージ名>
+
+すべてのパッケージを最新のバージョンに更新する。
+conda update --all
+
+condaコマンドを最新のバージョンに更新する。
+conda update conda
+
+指定された仮想環境のパッケージを最新のバージョンに更新する。
+conda update -n <仮想環境名> <パッケージ名>
+
+パッケージを削除する。
+conda remove <パッケージ名>
+
+指定された仮想環境のパッケージを削除する。
+conda remove -n <仮想環境名> <パッケージ名>
+
+指定された仮想環境を削除する。
+conda remove -n <仮想環境名> --all
+
+仮想環境を有効化する。
+conda activate <仮想環境名>
+
+仮想環境を無効化する。
+conda deactivate
+
+パッケージを検索する。
+conda search <検索文字列>
+
+パッケージ一覧
+conda list
+
+conda list -n <仮想環境名>
+
+仮想環境の一覧を表示する
+conda info -e
+
+conda install pip
+
+
+
+----------------------

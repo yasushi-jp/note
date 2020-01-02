@@ -5,7 +5,7 @@ mount -t vboxsf AppStream /vbox_share
 
 $ su -
 
-# yum install -y createrepo yum-utils
+# yum --enablerepo=RHEL-Server-DVD install -y createrepo yum-utils
 
 # cd
 # mkdir -p yum
@@ -14,7 +14,7 @@ $ su -
 # cd httpd_repo
 # mkdir Packages
 # cd Packages
-# yumdownloader --resolve httpd
+# yumdownloader --enablerepo=RHEL-Server-DVD install --resolve httpd
 # cd ../..
 # createrepo httpd_repo
 # cd /etc/yum.repos.d
@@ -25,8 +25,9 @@ baseurl=file:///root/yum/httpd_repo
 enabled=1
 gpgcheck=0
 
-# yum clean all
-# yum search httpd
+# yum --enablerepo=RHEL-Server-DVD clean all
+# yum --enablerepo=httpd_repo clean all
+# yum --enablerepo=httpd_repo httpd
 # yum --enablerepo=httpd_repo install httpd
 
 
